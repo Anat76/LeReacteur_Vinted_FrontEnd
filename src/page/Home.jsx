@@ -6,14 +6,30 @@ const Home = ({ data }) => {
       <Link to="/offer">
         <button>aller sur offers</button>
       </Link>
-      {data.offers.map((offers) => {
+      {data.offers.map((offer) => {
         //   console.log(offers._id)
+        const account = offer.owner.account;
+
         return (
-          <article key={offers._id}>
-            <div>
-              {/* <img src={offers.owner.account.avatar.secure_url} alt="" /> */}
-              <h5>{offers.owner.account.username}</h5>
-            </div>
+          <article key={offer._id}>
+            <section>
+              {account.avatar && <img src={account.avatar.secure_url} alt="" />}
+              <h5>{account.username}</h5>
+              <div>
+                {offer.product_pictures.map((picture) => {
+                  // console.log(picture.secure_url);
+                  return (
+                    <img
+                      key={picture.asset_id}
+                      src={picture.secure_url}
+                      alt=""
+                    />
+                  );
+                })}
+              </div>
+              <p>{offer.product_price}</p>;
+            </section>
+            <div></div>
           </article>
         );
       })}

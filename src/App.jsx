@@ -20,7 +20,7 @@ const App = () => {
         );
         // je stock la reponse dans le state data
         setData(result.data);
-        console.log(result.data);
+        // console.log(result.data);
         // je passe mon state isloading en false
         setIsLoading(false);
       } catch (error) {
@@ -39,9 +39,9 @@ const App = () => {
       ) : (
         <>
           <Router>
+            <Header />
             <Routes>
-              <Header />
-              <Route path="/" element={<Home />} />
+              <Route path="/" element={<Home data={data} />} />
               <Route path="/offer" element={<Offer />} />
             </Routes>
           </Router>

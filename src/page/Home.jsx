@@ -1,6 +1,38 @@
 import { Link } from "react-router-dom";
-const Home = ({ data }) => {
-  return (
+import { useEffect, useState } from "react";
+import axios from "axios";
+
+import OfferCard from "../components/OfferCard";
+
+const Home = () => {
+  // State qui gere la data reçue
+  const [data, setData] = useState();
+  // State qui permet de savoir si la requete au serveur est bien arrivée
+  const [isLoadind, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await axios.get(
+          "https://lereacteur-vinted-api.herokuapp.com/offers"
+        );
+        // je stock la reponse dans le state data
+        setData(result.data);
+        // console.log(result.data);
+        // je passe mon state isloading en false
+        setIsLoading(false);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    // j'appel ma fonction fetchData
+    fetchData();
+    // console.log("mon useEffect se render");
+  }, []);
+
+  return isLoadind ? (
+    <div>Please wait ...</div>
+  ) : (
     <>
       <h1>Je suis sur la page d'acceuil</h1>
       <Link to="/offer">
@@ -8,32 +40,8 @@ const Home = ({ data }) => {
       </Link>
       {data.offers.map((offer) => {
         //   console.log(offers._id)
-        const account = offer.owner.account;
-
-        return (
-          <article key={offer._id}>
-            <section>
-              {account.avatar && <img src={account.avatar.secure_url} alt="" />}
-              <h5>{account.username}</h5>
-              <div>
-                {offer.product_pictures.map((picture) => {
-                  // console.log(picture.secure_url);
-                  return (
-                    <img
-                      key={picture.asset_id}
-                      src={picture.secure_url}
-                      alt=""
-                    />
-                  );
-                })}
-              </div>
-              <p>{offer.product_price}</p>;
-            </section>
-            <div></div>
-          </article>
-        );
+        return <OfferCard key={offer._id} dataOffer={offer} />;
       })}
-      <h5></h5>
     </>
   );
 };

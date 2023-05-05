@@ -4,8 +4,8 @@ const OfferCard = ({ dataOffer }) => {
   //   console.log(dataOffer);
 
   return (
-    <article>
-      <section>
+    <Link to={`/offer/${dataOffer._id}`}>
+      <article>
         <div>
           {dataOffer.owner.account.avatar && (
             <img src={dataOffer.owner.account.avatar.secure_url} alt="" />
@@ -25,8 +25,8 @@ const OfferCard = ({ dataOffer }) => {
             }
           })}
         </div>
-      </section>
-    </article>
+      </article>
+    </Link>
   );
 };
 

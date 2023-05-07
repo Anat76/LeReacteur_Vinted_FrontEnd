@@ -42,7 +42,7 @@ const Offer = () => {
         <p>{data.product_price} €</p>
         <div>
           {data.product_details.map((details, index) => {
-            console.log(details);
+            // console.log(details);
             return (
               <div key={index}>
                 <p>{details.MARQUE}</p>

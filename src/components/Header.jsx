@@ -1,12 +1,31 @@
 import logo from "../assets/img/logoVinted.png";
-const Header = () => {
+import { Link } from "react-router-dom";
+const Header = ({ cookieToken, token }) => {
   return (
     <header>
       <img src={logo} alt="" />
       <div>
-        <button>S'incrire</button>
-        <button>Se connecter</button>
-        <button>Vends tes articles</button>
+        {token ? (
+          <>
+            <button
+              onChange={() => {
+                cookieToken(null);
+              }}
+            >
+              Deconnexion
+            </button>
+            <button>Vends tes articles</button>
+          </>
+        ) : (
+          <div>
+            <Link to={"/login"}>
+              <button>Se connecter</button>
+            </Link>
+            <Link to={"/signup"}>
+              <button>S'inscrire</button>
+            </Link>
+          </div>
+        )}
       </div>
     </header>
   );

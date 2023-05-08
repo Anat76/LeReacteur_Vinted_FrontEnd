@@ -5,18 +5,34 @@ import Offer from "./page/offer";
 import Header from "./components/Header";
 import Login from "./page/Login";
 import Signup from "./page/Signup";
+import { useState } from "react";
+import Cookies from "js-cookie";
 
 const App = () => {
   // console.log("mon composant est render");
+  const [token, setToken] = useState(Cookies.get("tokenVinted") || null);
+
+  const cookieToken = (token) => {
+    if (token) {
+      setToken(token);
+      Cookies.set("tokenVinted", token, { expires: 2 });
+    } else {
+      setToken(null);
+      Cookies.remove("tokenVinted");
+    }
+  };
   return (
     <>
       <Router>
-        <Header />
+        <Header cookieToken={cookieToken} token={token} />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/offer/:id" element={<Offer />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login cookieToken={cookieToken} />} />
+          <Route
+            path="/signup"
+            element={<Signup cookieToken={cookieToken} />}
+          />
         </Routes>
       </Router>
     </>

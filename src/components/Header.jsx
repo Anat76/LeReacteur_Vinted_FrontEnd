@@ -14,7 +14,9 @@ const Header = ({ cookieToken, token }) => {
             >
               Deconnexion
             </button>
-            <button>Vends tes articles</button>
+            <Link to={"/publish"}>
+              <button>Vends tes articles</button>
+            </Link>
           </>
         ) : (
           <div>

@@ -7,6 +7,7 @@ import Login from "./page/Login";
 import Signup from "./page/Signup";
 import { useState } from "react";
 import Cookies from "js-cookie";
+import Publish from "./page/Publish";
 
 const App = () => {
   // console.log("mon composant est render");
@@ -33,6 +34,7 @@ const App = () => {
             path="/signup"
             element={<Signup cookieToken={cookieToken} />}
           />
+          <Route path="publish" element={<Publish />} />
         </Routes>
       </Router>
     </>

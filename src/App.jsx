@@ -8,7 +8,7 @@ import Signup from "./page/Signup";
 import { useState } from "react";
 import Cookies from "js-cookie";
 import Publish from "./page/Publish";
-import Payment from "./page/Payment";
+// import Payment from "./page/Payment";
 
 const App = () => {
   // console.log("mon composant est render");
@@ -36,7 +36,7 @@ const App = () => {
             element={<Signup cookieToken={cookieToken} />}
           />
           <Route path="publish" element={<Publish token={token} />} />
-          <Route path="payment" element={<Payment token={token} />} />
+          {/* <Route path="payment" element={<Payment token={token} />} /> */}
         </Routes>
       </Router>
     </>

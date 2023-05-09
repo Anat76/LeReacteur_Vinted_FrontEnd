@@ -1,5 +1,5 @@
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./page/Home";
 import Offer from "./page/Offer";
 import Header from "./components/Header";
@@ -8,6 +8,7 @@ import Signup from "./page/Signup";
 import { useState } from "react";
 import Cookies from "js-cookie";
 import Publish from "./page/Publish";
+import Payment from "./page/Payment";
 
 const App = () => {
   // console.log("mon composant est render");
@@ -35,6 +36,7 @@ const App = () => {
             element={<Signup cookieToken={cookieToken} />}
           />
           <Route path="publish" element={<Publish token={token} />} />
+          <Route path="payment" element={<Payment token={token} />} />
         </Routes>
       </Router>
     </>

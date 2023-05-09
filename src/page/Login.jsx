@@ -1,10 +1,12 @@
 import { useState } from "react";
 import axios from "axios";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const Login = ({ cookieToken }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const navigate = useNavigate();
   return (
     <section>
       <form
@@ -20,6 +22,7 @@ const Login = ({ cookieToken }) => {
             );
             if (result.data.token) {
               cookieToken(result.data.token);
+              navigate("/");
             }
           } catch (error) {
             console.log(error.message);

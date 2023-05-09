@@ -34,7 +34,7 @@ const App = () => {
             path="/signup"
             element={<Signup cookieToken={cookieToken} />}
           />
-          <Route path="publish" element={<Publish />} />
+          <Route path="publish" element={<Publish token={token} />} />
         </Routes>
       </Router>
     </>

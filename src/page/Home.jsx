@@ -35,9 +35,7 @@ const Home = () => {
   ) : (
     <>
       <h1>Je suis sur la page d'acceuil</h1>
-      <Link to="/offer">
-        <button>aller sur offers</button>
-      </Link>
+
       {data.offers.map((offer) => {
         //   console.log(offers._id)
         return <OfferCard key={offer._id} dataOffer={offer} />;

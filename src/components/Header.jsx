@@ -3,21 +3,19 @@ import { Link } from "react-router-dom";
 const Header = ({ cookieToken, token }) => {
   return (
     <header>
-      <img src={logo} alt="" />
+      <Link to="/">
+        <img src={logo} alt="" />
+      </Link>
+
       <div>
         {token ? (
-          <>
-            <button
-              onChange={() => {
-                cookieToken(null);
-              }}
-            >
-              Deconnexion
-            </button>
-            <Link to={"/publish"}>
-              <button>Vends tes articles</button>
-            </Link>
-          </>
+          <button
+            onChange={() => {
+              cookieToken(null);
+            }}
+          >
+            Deconnexion
+          </button>
         ) : (
           <div>
             <Link to={"/login"}>
@@ -28,6 +26,9 @@ const Header = ({ cookieToken, token }) => {
             </Link>
           </div>
         )}
+        <Link to={"/publish"}>
+          <button>Vends tes articles</button>
+        </Link>
       </div>
     </header>
   );
